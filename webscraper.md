@@ -5,8 +5,5 @@
   <figcaption>Distributed web scraping process</figcaption>
 </figure>
 
-**Tags:** <kbd>python</kbd> <kbd>selenium</kbd> <kbd>web-scraping</kbd> <kbd>ecommerce</kbd>
+<kbd>python</kbd> <kbd>selenium</kbd> <kbd>web-scraping</kbd> <kbd>ecommerce</kbd>
 
-<hr />
-
-wip

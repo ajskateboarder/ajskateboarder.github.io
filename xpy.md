@@ -5,9 +5,7 @@
   <figcaption>Compiled XPy code, typically not seen</figcaption>
 </figure>
 
-**Tags:** <kbd>python</kbd> <kbd>jsx-templates</kbd>
-
-<hr />
+<kbd>python</kbd> <kbd>jsx-templates</kbd>
 
 <sub>This is one of my first ever blog posts on software; if I ever sound verbose, apologies in advance</sub>
 
