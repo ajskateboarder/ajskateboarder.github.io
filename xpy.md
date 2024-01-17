@@ -7,7 +7,7 @@
 
 **Tags:** <kbd>python</kbd> <kbd>jsx-templates</kbd>
 
-<hr></hr>
+<hr />
 
 <sub>This is one of my first ever blog posts on software; if I ever sound verbose, apologies in advance</sub>
 

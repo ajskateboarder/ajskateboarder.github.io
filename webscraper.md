@@ -7,6 +7,6 @@
 
 **Tags:** <kbd>python</kbd> <kbd>selenium</kbd> <kbd>web-scraping</kbd> <kbd>ecommerce</kbd>
 
-<hr></hr>
+<hr />
 
 wip
