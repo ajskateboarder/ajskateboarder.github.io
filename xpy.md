@@ -1,10 +1,17 @@
 # Attempts to make a Python templating system that isn't bad
 
-![xpy compilation](./xpy.png)
+<figure>
+  <img src="./xpy.png" alt="Compiled XPy code, typically not seen" />
+  <figcaption>Compiled XPy code, typically not seen</figcaption>
+</figure>
 
-<sub>This is one of my first ever blog posts on software -- if I ever sound verbose, apologies in advance :P</sub>
+**Tags:** <kbd>python</kbd> <kbd>jsx-templates</kbd>
 
-The source code for this is available on GitHub: https://github.com/ajskateboarder/xpy
+<hr></hr>
+
+<sub>This is one of my first ever blog posts on software; if I ever sound verbose, apologies in advance</sub>
+
+The source code for this is available on GitHub: [https://github.com/ajskateboarder/xpy](https://github.com/ajskateboarder/xpy)
 
 Templating, mainly with HTML, in Python is a very common thing to do when serving up dynamic content on a server or building static files, documentation, or reports. Even with the prevalence of JavaScript frameworks, sites sometimes use templates to inject data into the page to be rendered on the frontend; YouTube is a popular example.
 
