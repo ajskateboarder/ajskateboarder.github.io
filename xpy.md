@@ -1,8 +1,10 @@
-# Attempts to make a Python JSX extension that doesn't suck
+# Attempts to make a Python templating system that isn't bad
 
 ![xpy compilation](./xpy.png)
 
 <sub>This is one of my first ever blog posts on software -- if I ever sound verbose, apologies in advance :P</sub>
+
+The source code for this is available on GitHub: https://github.com/ajskateboarder/xpy
 
 Templating, mainly with HTML, in Python is a very common thing to do when serving up dynamic content on a server or building static files, documentation, or reports. Even with the prevalence of JavaScript frameworks, sites sometimes use templates to inject data into the page to be rendered on the frontend; YouTube is a popular example.
 
@@ -14,9 +16,9 @@ So instead of bringing Python to templating languages, we do the exact opposite,
 
 I'm going to mention that this obviously wasn't meant to compete with templating languages; those sorts of languages are far more stable than whatever this nonsense is (I don't even intend to use this ever). I mainly built this to see how far I could go with bringing JSX-like templates to Python itself. I *was* thinking of integrating this into Spylt, but that has a far different goal which I don't want to mess with, that being to integrate Svelte and Python with a very simple interface.
 
-(tl;dr: this was mostly for the lolz)
+(tl;dr: this was mostly for the lolz, don't use in production)
 
-This idea was inspired by Ben Visness's [LuaX](https://bvisness.me/luax/) that he built for his personal site, which integrates Go business logic with Lua and supports JSX-like code.
+This idea was inspired by Ben Visness's [LuaX](https://bvisness.me/luax/) that he built for his personal site, which integrates Go business logic with Lua and supports JSX-like code. This is also pretty similar to [packed](https://github.com/michaeljones/packed), but I wanted to include some more features and parse things differently.
 
 ## How the thing works
 
@@ -34,7 +36,7 @@ while line_index < len(code.readlines()):
 
 The logic for that turned into a cryptic puzzle of ~150 lines, which didn't even account for most element usages. It also had an arbitrary restriction that elements can only be used at return.
 
-With a rewrite I finished in about four hours of straight staring at a screen, it simply uses regular expressions on the source code to find and replace stuff. This also reduced the parser to ~52 lines, so if you ever want to preprocess some code, just put your fate in the hands of Regex or a proper lexer/parser and not a stupid central loop.
+With a rewrite I finished in about four hours of straight staring at a screen, it simply uses regular expressions on the source code to find and replace stuff. This also reduced the parser to ~52 lines, so if you ever want to preprocess some code, just put your fate in the hands of Regex or a lexer/parser and not a stupid central loop.
 
 References to blocks with any type of element are converted into triple-quoted f-strings. Then the parser goes back and converts custom-defined elements into calls inside braces, like `{element("some_text", foo="bar", fizz=42)}`.
 
@@ -100,4 +102,6 @@ If we run our app and access the root page, we should expect our HTML to produce
 
 ## The takeaways
 
-This was fun to write and all, but if you actually want more stable options, I recommend that you just use JSX with JavaScript and Babel (or a similar tool).
+This was mostly a fun process to write, but I mostly regret the way I implemented the parser; it's quite broken.
+
+if you actually want more stable options, I recommend that you just use JSX with JavaScript and Babel (or a similar tool), or [typed_html](https://docs.rs/typed-html/latest/typed_html/) if you are using Rust.
