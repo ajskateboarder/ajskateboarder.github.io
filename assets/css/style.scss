@@ -9,13 +9,15 @@ body {
 
 @media (prefers-color-scheme: light) {
   body {
-    background-color: #ffffff;
+    background-color: #fbf1c7;
+    color: #3c3836
   }
 }
 
 @media (prefers-color-scheme: dark) {
   body {
-    background-color: #0d1117;
+    background-color: #282828;
+    color: #eddbb2
   }
 }
 
@@ -57,7 +59,7 @@ pre.highlight {
   .m  { color: #79c0ff } /* Literal.Number */
   .s  { color: #ffe580 } /* Literal.String */
   .na { color: #b6e382 } /* Name.Attribute */
-  .nb { color: #dcdcaa } /* Name.Builtin */
+  .nb { color: #39c8b0 } /* Name.Builtin */
   .nc { color: #b6e382 } /* Name.Class */
   .no { color: #87ceeb } /* Name.Constant */
   .nd { color: #39c8b0 } /* Name.Decorator */
