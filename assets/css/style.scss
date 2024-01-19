@@ -8,14 +8,14 @@ body {
 }
 
 @media (prefers-color-scheme: light) {
-  body {
+  body, .markdown-body {
     background-color: #fbf1c7;
     color: #3c3836
   }
 }
 
 @media (prefers-color-scheme: dark) {
-  body {
+  body, .markdown-body {
     background-color: #282828;
     color: #eddbb2
   }
