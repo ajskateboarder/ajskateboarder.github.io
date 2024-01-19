@@ -12,12 +12,24 @@ body {
     background-color: #fbf1c7;
     color: #3c3836
   }
+  h1, h2, h3, h4, h5, h6 {
+    border-bottom: 1px solid rgba(60, 56, 54, 0.3) !important;
+  }
+  a {
+    color: #83a598 !important;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
   body, .markdown-body {
     background-color: #282828;
     color: #eddbb2
+  }
+  h1, h2, h3, h4, h5, h6 {
+    border-bottom: 1px solid rgba(237, 219, 178, 0.3) !important;
+  }
+  a {
+    color: #076678 !important;
   }
 }
 
