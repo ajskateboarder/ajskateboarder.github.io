@@ -7,6 +7,12 @@ body {
   margin: 0;
 }
 
+a {
+  color: #458588 !important;
+  text-shadow: 1px 1px 10px rgba(69, 133, 136, 0.2), 1px 1px 10px rgba(69, 133, 136, 0.4);
+}
+
+
 @media (prefers-color-scheme: light) {
   body, .markdown-body {
     background-color: #fbf1c7;
@@ -14,9 +20,6 @@ body {
   }
   h1, h2, h3, h4, h5, h6 {
     border-bottom: 1px solid rgba(60, 56, 54, 0.3) !important;
-  }
-  a {
-    color: #83a598 !important;
   }
 }
 
@@ -27,9 +30,6 @@ body {
   }
   h1, h2, h3, h4, h5, h6 {
     border-bottom: 1px solid rgba(237, 219, 178, 0.3) !important;
-  }
-  a {
-    color: #076678 !important;
   }
 }
 

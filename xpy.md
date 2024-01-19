@@ -1,5 +1,3 @@
-<hr />
-
 # Attempts to make a Python templating system that isn't bad
 
 <figure>
@@ -112,5 +110,3 @@ If we run our app and access the root page, we should expect our HTML to produce
 This was mostly a fun process to write, but I mostly regret the way I implemented the parser; it's quite broken.
 
 if you actually want more stable options, I recommend that you just use JSX with JavaScript and Babel (or a similar tool), or [typed_html](https://docs.rs/typed-html/latest/typed_html/) if you are using Rust.
-
-<hr />

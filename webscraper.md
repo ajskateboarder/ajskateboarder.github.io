@@ -1,5 +1,3 @@
-<hr />
-
 # Building a distributed web scraper
 
 <figure>
@@ -18,5 +16,3 @@ Here, I'm going to explain what I did to build an optimal, parallel screen scrap
 Yes, I did look into using [Grid](https://www.selenium.dev/documentation/grid/) before going and building my thing from scratch, and don't really recommend it for scraping -- It's more for testing from the looks of it. Grid seems to rely more on a static configuration, which doesn't work particularly well for a scraper that needs to share state between all nodes (and I mean a lot of state). Grid is also a bit difficult to setup, with the need to [compose a Docker network](https://github.com/sleepless-se/selenium-grid-sample) and do other various shenanigans.
 
 ## Use multi-threaded Selenium instances
-
-<hr />
