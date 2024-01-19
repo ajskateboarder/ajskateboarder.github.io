@@ -15,6 +15,12 @@ p > a {
   text-shadow: 1px 1px 10px rgba(69, 133, 136, 0.2), 1px 1px 10px rgba(69, 133, 136, 0.4);
 }
 
+kbd {
+	border: none !important;
+	font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji" !important;
+  padding: 5px !important;
+}
+
 @media (prefers-color-scheme: light) {
   body, .markdown-body {
     background-color: #fbf1c7;
@@ -22,6 +28,10 @@ p > a {
   }
   h1, h2, h3, h4, h5, h6 {
     border-bottom: 1px solid rgba(60, 56, 54, 0.3) !important;
+  }
+  kbd {
+    background-color: #1d2021 !important;
+    color: #eddbb2 !important;
   }
 }
 
@@ -32,6 +42,10 @@ p > a {
   }
   h1, h2, h3, h4, h5, h6 {
     border-bottom: 1px solid rgba(237, 219, 178, 0.3) !important;
+  }
+  kbd {
+    background-color: #f9f5d7 !important;
+    color: #3c3836 !important;
   }
 }
 
