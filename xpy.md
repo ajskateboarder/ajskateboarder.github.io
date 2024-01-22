@@ -27,7 +27,7 @@ This idea was inspired by Ben Visness's [LuaX](https://bvisness.me/luax/) that h
 
 ## How the thing works
 
-Xpy uses a type of preprocessor, mainly because I was too lazy to write new grammar for Python. But don't worry, I made it better in ways I'll explain soon. 
+Xpy uses a type of preprocessor that converts custom code into plain Python, mainly because I was too lazy to write new grammar for Python. But don't worry, I made it better in ways I'll explain soon. 
 
 When I first started, I decided to use a while loop to iterate over lines, which was questionable at best:
 
