@@ -6,6 +6,6 @@ This is where I'll post blog posts of any kind, because GitHub gists were becomi
 
 <kbd>python</kbd> <kbd>jsx-templates</kbd>
 
-## [Building a parallelized screen scraper](./screenscraper.md)
+## [A parallel screen scraping cookbook](./screenscraper.md)
 
 <kbd>python</kbd> <kbd>selenium</kbd> <kbd>web-scraping</kbd> <kbd>ecommerce</kbd>
