@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Crowd HTML Elements playground</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: Arial;
+  color: white;
+  overflow-y: hidden;
+}
+
+.split {
+  height: 100vh;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+}
+
+.left {
+  left: 0;
+  padding: 0;
+  margin: 0;
+  background-color: #1e1e1e;
+}
+
+.right {
+  right: 0;
+  overflow-y: auto
+}
+
+#editor {
+  height: 100vh !important;
+  max-height: 100vh !important;
+}
+
+#toolbar {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	color: rgba(255, 255, 255, 0.5);
+	font-style: italic;
+}
+</style>
+<script src="https://assets.crowd.aws/crowd-html-elements.js"></script>
+</head>
+<body>
+<div class="split left">
+	<div id="toolbar">
+		<span style="margin-left: 10px;">
+			Examples:
+			<select name="examples" id="selectExample">
+				<option value="basketball">Basketball</option>
+				<option value="sentiment-analysis">Sentiment analysis</option>
+			</select>
+		</span>
+		<span style="text-align: center">
+			See <a 
+				href="https://docs.aws.amazon.com/sagemaker/latest/dg/general-topiclist.html"
+				style="color: rgba(255, 255, 255, 0.7)"
+				target="_blank">Crowd HTML reference</a>&nbsp;
+				<svg xmlns="http://www.w3.org/2000/svg" height="12" viewBox="0 0 24 24" width="12">
+					<path d="M0 0h24v24H0z" fill="none"/>
+					<path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z" fill="rgba(255, 255, 255, 0.7)" />
+				</svg>
+		</span>
+		<span style="float: right; margin-right: 10px;">Use Ctrl+S to update the form</span>
+	</div>
+	<div id="editor"></div>
+</div>
+<div class="split right"><crowd-form id="crowdPreview"></crowd-form></div>
+<script>
+window.BASKETBALL_FORM = `<crowd-bounding-box
+  name="annotatedResult"
+  labels="['Basketball player', 'Referee']"
+  src="https://s3.amazonaws.com/cv-demo-images/basketball-outdoor.jpg"
+  header="Draw boxes around each basketball player and referee in this image"
+>
+  <full-instructions header="Bounding Box Instructions" >
+    <p>Use the bounding box tool to draw boxes around the requested target of interest:</p>
+    <ol>
+      <li>Draw a rectangle using your mouse over each instance of the target.</li>
+      <li>Make sure the box does not cut into the target, leave a 2 - 3 pixel margin</li>
+      <li>
+        When targets are overlapping, draw a box around each object,
+        include all contiguous parts of the target in the box.
+        Do not include parts that are completely overlapped by another object.
+      </li>
+      <li>
+        Do not include parts of the target that cannot be seen,
+        even though you think you can interpolate the whole shape of the target.
+      </li>
+      <li>Avoid shadows, they're not considered as a part of the target.</li>
+      <li>If the target goes off the screen, label up to the edge of the image.</li>
+    </ol>
+  </full-instructions>
+
+  <short-instructions>
+    Draw boxes around each basketball player and referee in this image.
+  </short-instructions>
+</crowd-bounding-box>
+`;
+window.SENTIMENT_FORM = `<crowd-classifier
+	name="sentiment"
+	categories="['Positive', 'Negative', 'Neutral', 'N/A']"
+	header="What sentiment does this text convey?"
+>
+    <classification-target>
+      Everything is wonderful.
+    </classification-target>
+      
+    <full-instructions header="Sentiment Analysis Instructions">
+	  <p><strong>Positive</strong> sentiments include: joy, excitement, delight</p>
+      <p><strong>Negative</strong> sentiments include: anger, sarcasm, anxiety</p>
+      <p><strong>Neutral</strong>: neither positive or negative, such as stating a fact</p>
+      <p><strong>N/A</strong>: when the text cannot be understood</p>
+      <p>When the sentiment is mixed, such as both joy and sadness, use your judgment to choose the stronger emotion.</p>
+    </full-instructions>
+
+    <short-instructions>
+      Choose the primary sentiment that is expressed by the text. 
+    </short-instructions>
+</crowd-classifier>
+`;
+</script>
+<script type="module">
+  import * as monaco from "https://cdn.jsdelivr.net/npm/monaco-editor@0.39.0/+esm";
+  
+  let editorElement = document.querySelector("#editor");
+  let selectExampleElement = document.querySelector("#selectExample");
+
+  let editor = monaco.editor.create(editorElement, {
+  	value: window.BASKETBALL_FORM,
+	language: "html",
+	theme: "vs-dark",
+  });
+  
+  window.onload = () => {
+  	document.querySelector("#crowdPreview").innerHTML = editor.getValue();
+  }
+
+  editorElement.onkeydown = (e) => {
+	if (e.ctrlKey && e.code === 'KeyS') {
+		e.preventDefault();
+        document.querySelector("#crowdPreview").innerHTML = editor.getValue();
+    }
+  }
+
+  selectExampleElement.onchange = () => {
+	if (selectExampleElement.value === "sentiment-analysis") {
+	  editor.setValue(window.SENTIMENT_FORM);
+	} else { editor.setValue(window.BASKETBALL_FORM); }
+	document.querySelector("#crowdPreview").innerHTML = editor.getValue();
+  }
+</script>
+</body>
