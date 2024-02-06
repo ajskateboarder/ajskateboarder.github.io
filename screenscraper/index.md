@@ -37,6 +37,10 @@ The end goal of every screen scraping project will obviously vary, but in my pro
 
 This project makes use of seven browsers, one running before step 1 and six running in parallel after.
 
+## Picking the Selenium browser
+
+At the end of the day, it barely matters, but I'd recommend using a browser built on Webkit, like Chromium (or maybe [QuteBrowser](https://github.com/qutebrowser/qutebrowser), though [compatibility with Selenium isn't guaranteed](https://forum.qt.io/topic/96202/unrecognized-chrome-version-when-using-selenium-python-bindings-and-chromedriver).. maybe??)
+
 ## Receiving an initial set of IDs
 
 A scraping/crawling task always begins with an initial set of data of any kind. For my purposes, I go to Amazon's best selling products page on a single browser (this can vary across sites in different regions) and look for a set of "Amazon Standard Identification Numbers" (ASINs) that point to products. I wasn't completely sure if this information was rendered on the server or the client, so I just threw in some Javascript to scroll to the bottom of the page :)
@@ -163,6 +167,6 @@ def single_browser_scrape(asin, browser, callback):
 
 ## Conclusion
 
-Not much to conclude here, but I can confirm this is a fast and safe approach to scraping content from sites with intensive JavaScript. It's quite memory-consuming though, as all screen-scraping tasks are. 8GB won't suffice ;)
+Not much to conclude here, but I can confirm this is a fast and safe approach to scraping content from sites with intensive JavaScript. It's quite memory-consuming though, as all screen-scraping tasks are. 8GB of RAM probably won't suffice ;)
 
 Through this approach and whatever specific things I needed, I was able to gather and process over 6 thousand reviews from 30 products in ~40 minutes on my quad-core, 32GB RAM machine. Yipee
