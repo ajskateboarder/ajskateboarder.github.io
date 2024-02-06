@@ -288,7 +288,7 @@ If your next classification project involves either of these things, you might w
 
 ## Check out
 
-- https://kislayverma.com/programming/combining-rule-systems-and-machine-learning/
-- https://nlathia.github.io/2020/10/ML-and-rule-engines.html
-- https://www.capitalone.com/tech/machine-learning/rules-vs-machine-learning - Specifically the "Patterns for Using Machine Learning and Rules Engines Together" section
-- https://github.com/conaticus/ebay-account-summarizer - applies similar flagging and scoring system to the one used here, though there's no ML involved (see [server/src/sellerRater.ts](https://github.com/conaticus/ebay-account-summarizer/blob/master/server/src/sellerRater.ts))
+- [https://kislayverma.com/programming/combining-rule-systems-and-machine-learning/](https://kislayverma.com/programming/combining-rule-systems-and-machine-learning/)
+- [https://nlathia.github.io/2020/10/ML-and-rule-engines.html](https://nlathia.github.io/2020/10/ML-and-rule-engines.html)
+- [https://www.capitalone.com/tech/machine-learning/rules-vs-machine-learning](https://www.capitalone.com/tech/machine-learning/rules-vs-machine-learning) - Specifically the "Patterns for Using Machine Learning and Rules Engines Together" section
+- [https://github.com/conaticus/ebay-account-summarizer](https://github.com/conaticus/ebay-account-summarizer0) - applies similar flagging and scoring system to the one used here, though there's no ML involved (see [server/src/sellerRater.ts](https://github.com/conaticus/ebay-account-summarizer/blob/master/server/src/sellerRater.ts))
