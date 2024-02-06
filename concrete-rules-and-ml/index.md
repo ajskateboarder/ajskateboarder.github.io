@@ -247,7 +247,7 @@ picked = [e for e in self.emoji_rate_map if e["repr"] == emoji_repr][0]
 negativity_score = 0.333
 ```
 
-Before beginning scoring, we select the emoji chosen from step 1 and initialize a negativity score of 0.333 to be modified. In my case, 0.333 is basically a middle value: 3 stars.
+Before beginning scoring, we select the emoji chosen from [step 1](#step-1-resolving-sentiment-between-models) and initialize a negativity score of 0.333 to be modified. In my case, 0.333 is basically a middle value: 3 stars.
 
 ```py
 for flag in self.flags:
@@ -274,7 +274,7 @@ rating = min(5, (round(1 - negativity_score, 4) / 2))
 return round(min(5, rating * 10))
 ```
 
-For every flag that was collected in step 2, we modify the score according to the value associated with the flag. These values were chosen mostly out of rigorous testing :p And there you have it.
+For every flag that was collected in [step 2](#step-2-flagging), we modify the score according to the value associated with the flag. These values were chosen mostly out of rigorous testing :p And there you have it.
 
 ## Conclusion
 
