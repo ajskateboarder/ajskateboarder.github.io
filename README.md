@@ -12,7 +12,7 @@ Most of these involve breaking down a personal project and providing general ins
 
 <kbd>python</kbd> <kbd>selenium</kbd> <kbd>web-scraping</kbd> <kbd>ecommerce</kbd>
 
-### [Combining rules and machine learning](/rules-and-ml)
+### [Combining concrete rules and machine learning for classification](/concrete-rules-and-ml)
 
 <kbd>machine-learning</kbd> <kbd>rule-systems</kbd>
 
