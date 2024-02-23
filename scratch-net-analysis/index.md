@@ -99,7 +99,7 @@ Here, you can notice how root followers have their own personalities as spotted 
 
 There are a few known type of usernames on Scratch: the miscellaneous ones, ones involving any animal, and the "aesthetic" ones. From what I've seen on other social media, no other platform has these silly aesthetic usernames in such abundance. They usually consist of replacing vowels with "x", using extra vowels (usually i), and/or using extra dashes. Usually, it doesn't even take a *single step* to reach a follower that meets these qualifications.
 
-[todo..]
+\[todo..\]
 
 The full networks for both networks can be found at below links:
 
