@@ -16,7 +16,7 @@ Most of these involve breaking down a personal project and providing general ins
 
 <kbd>machine-learning</kbd> <kbd>rule-systems</kbd>
 
-### [A network analysis of the Scratch community](/concrete-rules-and-ml)
+### [A network analysis of the Scratch community](/scratch-net-analysis)
 
 <kbd>python</kbd> <kbd>graph-theory</kbd> <kbd>social-networks</kbd>
 

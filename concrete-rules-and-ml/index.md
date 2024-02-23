@@ -16,11 +16,15 @@ and machine learning:
 
 With my project, I use the output of pre-trained sentiment analysis networks as inputs to a rule-based process to correct the outputs and quantify the sentiment information as a star rating using a weighting system.
 
-![Wordsmyth flow](./concrete-rules-and-ml.png)
+<figure>
+  <img src="./concrete-rules-and-ml.png" alt="Wordsmyth flow" />
+</figure>
 
 In simpler terms, this is the layout of the system:
 
-![Simpler layout](./simple-layout.png)
+<figure>
+  <img src="./simple-layout.png" alt="Simpler layout" />
+</figure>
 
 What's honestly weird about this approach is that, in this ever-growing ecosystem of machine learning, there are so few applications of this approach online!! Aside from the [few blogs](#related) I found that cover this idea, there are no projects to be found that apply a similar methodology; everybody is just talking about how nice the approach is. So let me fix that - by reviewing code that applies this logic in action.
 
