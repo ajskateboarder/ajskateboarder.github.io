@@ -86,7 +86,7 @@ for _, username in edges:
 I could repeat this for much longer if I wanted to (without it turning into API abuse obviously 🤣), but for demo purposes, I stop after a single time of doing this... nevertheless, it's still a very huge network. Root followers have their own followers, which can essentially be considered communities. Users that have common followers will connect with common communities.
 
 <figure>
-  <img src="./scratch-net-analysis.png" alt="Full network of aj🛹er" />
+  <img src="./aj-entire-network.png" alt="Full network of aj🛹er" />
   <figcaption>Full network of aj🛹er</figcaption>
 </figure>
 
