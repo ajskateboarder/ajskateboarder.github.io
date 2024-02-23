@@ -2,7 +2,7 @@
 
 ## Blogs
 
-Most of these involve breaking down a personal project and providing general insight.
+Most of these involve breaking down a personal project and providing general insight. It can also just be for giggles.
 
 ### [Attempts to make a Python templating system that isn't bad](/xpy)
 
@@ -15,6 +15,10 @@ Most of these involve breaking down a personal project and providing general ins
 ### [Combining concrete rules and machine learning for classification](/concrete-rules-and-ml)
 
 <kbd>machine-learning</kbd> <kbd>rule-systems</kbd>
+
+### [A network analysis of the Scratch community](/concrete-rules-and-ml)
+
+<kbd>python</kbd> <kbd>graph-theory</kbd> <kbd>social-networks</kbd>
 
 ## Miscellaneous stuff
 

@@ -47,7 +47,7 @@ A scraping/crawling task always begins with an initial set of data of any kind. 
 
 ## Orchestrating multiple browsers
 
-After we have our initial set of data, we can begin scraping reviews over a set of browsers. This is possible in Python by using a `ThreadPoolExecutor or something similar to create and send commands to multiple browsers at once.
+After we have our initial set of data, we can begin scraping reviews over a set of browsers. This is possible in Python by using a `ThreadPoolExecutor` or something similar to create and send commands to multiple browsers at once.
 
 ```py
 ...
@@ -121,7 +121,6 @@ def kitty_captcha(browser):
       check=True
     )
     return input("(login) Please solve the provided captcha: ")
-
 main_scraper.captcha_hook = kitty_captcha
 ```
 
@@ -142,9 +141,7 @@ def process_reviews(db, reviews):
       f"INSERT INTO {review['table']} VALUES (?)",
       (review["text"],)
     )
-
 ...
-
 if __name__ == "__main__":
   db = Sqlite3Worker("data.sqlite")
   scrape_reviews(

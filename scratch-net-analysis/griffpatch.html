@@ -1,0 +1,250 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 600px;
+                 background-color: #ffffff;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+             #loadingBar {
+                 position:absolute;
+                 top:0px;
+                 left:0px;
+                 width: 100%;
+                 height: 600px;
+                 background-color:rgba(200,200,200,0.8);
+                 -webkit-transition: all 0.5s ease;
+                 -moz-transition: all 0.5s ease;
+                 -ms-transition: all 0.5s ease;
+                 -o-transition: all 0.5s ease;
+                 transition: all 0.5s ease;
+                 opacity:1;
+             }
+
+             #bar {
+                 position:absolute;
+                 top:0px;
+                 left:0px;
+                 width:20px;
+                 height:20px;
+                 margin:auto auto auto auto;
+                 border-radius:11px;
+                 border:2px solid rgba(30,30,30,0.05);
+                 background: rgb(0, 173, 246); /* Old browsers */
+                 box-shadow: 2px 0px 4px rgba(0,0,0,0.4);
+             }
+
+             #border {
+                 position:absolute;
+                 top:10px;
+                 left:10px;
+                 width:500px;
+                 height:23px;
+                 margin:auto auto auto auto;
+                 box-shadow: 0px 0px 4px rgba(0,0,0,0.2);
+                 border-radius:10px;
+             }
+
+             #text {
+                 position:absolute;
+                 top:8px;
+                 left:530px;
+                 width:30px;
+                 height:50px;
+                 margin:auto auto auto auto;
+                 font-size:22px;
+                 color: #000000;
+             }
+
+             div.outerBorder {
+                 position:relative;
+                 top:400px;
+                 width:600px;
+                 height:44px;
+                 margin:auto auto auto auto;
+                 border:8px solid rgba(0,0,0,0.1);
+                 background: rgb(252,252,252); /* Old browsers */
+                 background: -moz-linear-gradient(top,  rgba(252,252,252,1) 0%, rgba(237,237,237,1) 100%); /* FF3.6+ */
+                 background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(252,252,252,1)), color-stop(100%,rgba(237,237,237,1))); /* Chrome,Safari4+ */
+                 background: -webkit-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* Chrome10+,Safari5.1+ */
+                 background: -o-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* Opera 11.10+ */
+                 background: -ms-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* IE10+ */
+                 background: linear-gradient(to bottom,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* W3C */
+                 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfcfc', endColorstr='#ededed',GradientType=0 ); /* IE6-9 */
+                 border-radius:72px;
+                 box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+             }
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+            <div id="loadingBar">
+              <div class="outerBorder">
+                <div id="text">0%</div>
+                <div id="border">
+                  <div id="bar"></div>
+                </div>
+              </div>
+            </div>
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "#97c2fc", "id": "griffpatch", "label": "griffpatch", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "ryouga_xo3301", "label": "ryouga_xo3301", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "windowsphone10", "label": "windowsphone10", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "SuperJJOx", "label": "SuperJJOx", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "HittlerFortnite-1942", "label": "HittlerFortnite-1942", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "-Garfeild-", "label": "-Garfeild-", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "advaydas", "label": "advaydas", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "kazukazu1212", "label": "kazukazu1212", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Ethanjohnstone0", "label": "Ethanjohnstone0", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "FollowBot-1", "label": "FollowBot-1", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Imnotamemeguy", "label": "Imnotamemeguy", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "bBoXd", "label": "bBoXd", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Thwokmsm", "label": "Thwokmsm", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "CoolScratch94", "label": "CoolScratch94", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "dangkhoapeter", "label": "dangkhoapeter", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Jackwag11", "label": "Jackwag11", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "donaldmcdonaldo", "label": "donaldmcdonaldo", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "meiseei", "label": "meiseei", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "20365168", "label": "20365168", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "bubs_26_butter", "label": "bubs_26_butter", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "cecroxysoper27", "label": "cecroxysoper27", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "frog_king200", "label": "frog_king200", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "JonathanTheTiger", "label": "JonathanTheTiger", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "2024bpps12", "label": "2024bpps12", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "exervitory", "label": "exervitory", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "MrSpeedyLeopard", "label": "MrSpeedyLeopard", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "LSW_Coding", "label": "LSW_Coding", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "nyanya727", "label": "nyanya727", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "takinosei", "label": "takinosei", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "saidsuraj", "label": "saidsuraj", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "pletworm", "label": "pletworm", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "koukisakai", "label": "koukisakai", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "onigiri_ra-men", "label": "onigiri_ra-men", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Scratch_poteto", "label": "Scratch_poteto", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "julius100712", "label": "julius100712", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "trangmoon", "label": "trangmoon", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "-_--AmongUS--_-", "label": "-_--AmongUS--_-", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Quizley", "label": "Quizley", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Waffles-Are-Yummy", "label": "Waffles-Are-Yummy", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "InsightPlays0666", "label": "InsightPlays0666", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "oyakodonnsan", "label": "oyakodonnsan", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "cherub_blossom", "label": "cherub_blossom", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "---Furturistic---", "label": "---Furturistic---", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "-gimik-", "label": "-gimik-", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Cesto_Quitimaly678", "label": "Cesto_Quitimaly678", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "MrYeastz", "label": "MrYeastz", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Lava-Bucket", "label": "Lava-Bucket", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "scratcher101rbpl", "label": "scratcher101rbpl", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Wanderer29", "label": "Wanderer29", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "mxg9", "label": "mxg9", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "DrParrot3", "label": "DrParrot3", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "666devilman", "label": "666devilman", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Damian0718", "label": "Damian0718", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "FamilyFriendUsername", "label": "FamilyFriendUsername", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "susysusBoi", "label": "susysusBoi", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "KayALT", "label": "KayALT", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Graysonwillget100", "label": "Graysonwillget100", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "yun0doodle", "label": "yun0doodle", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "photos_2801", "label": "photos_2801", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "F23H11", "label": "F23H11", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "TheVeryAverageCoder", "label": "TheVeryAverageCoder", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "HaoewsS", "label": "HaoewsS", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "hutagotti_Z", "label": "hutagotti_Z", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "-RandomFollower-", "label": "-RandomFollower-", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "lNateHiggers1", "label": "lNateHiggers1", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Gamblefamnat", "label": "Gamblefamnat", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "jamesthesealion", "label": "jamesthesealion", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Jaxygaming", "label": "Jaxygaming", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Capybara9897", "label": "Capybara9897", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "OctoberGirl31", "label": "OctoberGirl31", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "--Madness--", "label": "--Madness--", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Cralastic", "label": "Cralastic", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "OIDHIF_F4F", "label": "OIDHIF_F4F", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "ApeMaya24", "label": "ApeMaya24", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "percent-15", "label": "percent-15", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "ScriptSensei", "label": "ScriptSensei", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Tinixe", "label": "Tinixe", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Iumination", "label": "Iumination", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "MADDY_Lolha", "label": "MADDY_Lolha", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "plantbee", "label": "plantbee", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "BrawlingThyme", "label": "BrawlingThyme", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "1920A", "label": "1920A", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Snoopy867", "label": "Snoopy867", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "RINGADINGADOODLEDOO", "label": "RINGADINGADOODLEDOO", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Cooldomb4", "label": "Cooldomb4", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Zoom234bp", "label": "Zoom234bp", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "tails2fan", "label": "tails2fan", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "9_py", "label": "9_py", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "MelloGangGames", "label": "MelloGangGames", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "norulesonmyprofile", "label": "norulesonmyprofile", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "automat3d", "label": "automat3d", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "-hxneystar-", "label": "-hxneystar-", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "LordSpider123", "label": "LordSpider123", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Yydabeat123", "label": "Yydabeat123", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "SnickersTheTurtle", "label": "SnickersTheTurtle", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "CereaII", "label": "CereaII", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "scratchedu056jasonm", "label": "scratchedu056jasonm", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "ryamcs31", "label": "ryamcs31", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Tinyau", "label": "Tinyau", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "xuserluvx", "label": "xuserluvx", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Fnouhmenl", "label": "Fnouhmenl", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Ender-Greatest", "label": "Ender-Greatest", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "MrCrabb77", "label": "MrCrabb77", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "antoniolucifero13", "label": "antoniolucifero13", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Dorky_Gal", "label": "Dorky_Gal", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Fashion_Guru", "label": "Fashion_Guru", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "very__yummy", "label": "very__yummy", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "very_yummy", "label": "very_yummy", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "HOT_DIGGETY_DOG", "label": "HOT_DIGGETY_DOG", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Butter_on_a_pancake", "label": "Butter_on_a_pancake", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Ninja22SCRATCH", "label": "Ninja22SCRATCH", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Jade_Toucan", "label": "Jade_Toucan", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "mastesword6", "label": "mastesword6", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "TheTinyDemon", "label": "TheTinyDemon", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Julian1274", "label": "Julian1274", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Newtwon", "label": "Newtwon", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "sawyer_macleod", "label": "sawyer_macleod", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "RayAsianBoy", "label": "RayAsianBoy", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "jemby_me", "label": "jemby_me", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Lobotomey", "label": "Lobotomey", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "kure-nnge-mu", "label": "kure-nnge-mu", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "yotsuba-529", "label": "yotsuba-529", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "nekozukiaisu", "label": "nekozukiaisu", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "snowbanana", "label": "snowbanana", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "-OronxDonate-", "label": "-OronxDonate-", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Ai_lin", "label": "Ai_lin", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "soma1109", "label": "soma1109", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Hamutaroudayo", "label": "Hamutaroudayo", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "aoirogasukinootouto", "label": "aoirogasukinootouto", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "karintou_", "label": "karintou_", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "hugdsyegasydvgy", "label": "hugdsyegasydvgy", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "taku787", "label": "taku787", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Syougooooooooo", "label": "Syougooooooooo", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "tuiki_0324", "label": "tuiki_0324", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "sukurattyann", "label": "sukurattyann", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Gauru_1031", "label": "Gauru_1031", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "69074123", "label": "69074123", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "yuu328yama", "label": "yuu328yama", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "shioupc", "label": "shioupc", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "5108iii", "label": "5108iii", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "akapennmarutuke", "label": "akapennmarutuke", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "uka_v6893No2", "label": "uka_v6893No2", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "LIZ_0504", "label": "LIZ_0504", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "ekepon_22", "label": "ekepon_22", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "OPT2049", "label": "OPT2049", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "kei011700", "label": "kei011700", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Masukaanya3", "label": "Masukaanya3", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "moka-mogu-kami", "label": "moka-mogu-kami", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "haruharu_06", "label": "haruharu_06", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "umino-kurage", "label": "umino-kurage", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "haruharu8863", "label": "haruharu8863", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "banana-king469", "label": "banana-king469", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "SBTNOY", "label": "SBTNOY", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "yama-sada-kotonoha", "label": "yama-sada-kotonoha", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "IQ100-haru_clone", "label": "IQ100-haru_clone", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "akatsukibook", "label": "akatsukibook", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "cheeseokaka", "label": "cheeseokaka", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "ox_xz", "label": "ox_xz", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "0penCode", "label": "0penCode", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "GeeNaas", "label": "GeeNaas", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "CR7sewwwy", "label": "CR7sewwwy", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "MissStevenson06", "label": "MissStevenson06", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "2024bpps09", "label": "2024bpps09", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "GAtrainer04", "label": "GAtrainer04", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "mini_Chimy", "label": "mini_Chimy", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "BEBETANN", "label": "BEBETANN", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "LaAlpha", "label": "LaAlpha", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "y-za", "label": "y-za", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "yuysusi", "label": "yuysusi", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Cheese-Cheeze", "label": "Cheese-Cheeze", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "gudetama-train", "label": "gudetama-train", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "siokosyou89", "label": "siokosyou89", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "yyyyyyuuriZ", "label": "yyyyyyuuriZ", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Far_wisteria", "label": "Far_wisteria", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "saindaaa", "label": "saindaaa", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "soroban-4", "label": "soroban-4", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "okudadayo", "label": "okudadayo", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "fox082", "label": "fox082", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "-wooperlooper-", "label": "-wooperlooper-", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Mr-xewyt", "label": "Mr-xewyt", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "konbinisinja_", "label": "konbinisinja_", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "monta-supesu", "label": "monta-supesu", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "yunagai1212", "label": "yunagai1212", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Takke-20120402", "label": "Takke-20120402", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "AKIO12627", "label": "AKIO12627", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "nozomochi", "label": "nozomochi", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "ebiten123", "label": "ebiten123", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "rituto13", "label": "rituto13", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "ky3141", "label": "ky3141", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "omuraisukun-", "label": "omuraisukun-", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "mic_c", "label": "mic_c", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "sa-mondayo", "label": "sa-mondayo", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "scratca-0211", "label": "scratca-0211", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "scratchcat_0905_2", "label": "scratchcat_0905_2", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "kirbyDorifuto", "label": "kirbyDorifuto", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "123kura", "label": "123kura", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "tanosikuyaruzo", "label": "tanosikuyaruzo", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "nekozou28", "label": "nekozou28", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "WDM177", "label": "WDM177", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "kira0505", "label": "kira0505", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "keitan2008", "label": "keitan2008", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "gussuri", "label": "gussuri", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Eight8885961", "label": "Eight8885961", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Diszirukonn", "label": "Diszirukonn", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "ZHWK_Test", "label": "ZHWK_Test", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "sukura111", "label": "sukura111", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "aki078533", "label": "aki078533", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "funfunkotetsu", "label": "funfunkotetsu", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "nagisatti", "label": "nagisatti", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "ariann-", "label": "ariann-", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "swios", "label": "swios", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Dragon-TV-", "label": "Dragon-TV-", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "kuragemikkusu", "label": "kuragemikkusu", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "9090---", "label": "9090---", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "braised_pork", "label": "braised_pork", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "simasimayuu", "label": "simasimayuu", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "_K_U_R_O_", "label": "_K_U_R_O_", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Tarako282", "label": "Tarako282", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "nityounopisutoru", "label": "nityounopisutoru", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "44166144", "label": "44166144", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "tomato6868---2---", "label": "tomato6868---2---", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "galomaRU1012", "label": "galomaRU1012", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "games61100102", "label": "games61100102", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "uhhyhhyhhhh", "label": "uhhyhhyhhhh", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "localbridge", "label": "localbridge", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "tukonohaJP", "label": "tukonohaJP", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Hinaka09", "label": "Hinaka09", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "gomane", "label": "gomane", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "yuki-0713", "label": "yuki-0713", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "kamo2syo", "label": "kamo2syo", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "yukalin", "label": "yukalin", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "mash2020", "label": "mash2020", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Kanikama198", "label": "Kanikama198", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "ryuou09", "label": "ryuou09", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "ojamajo1111", "label": "ojamajo1111", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "yamatanodaija", "label": "yamatanodaija", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "kamesiki", "label": "kamesiki", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "MIZUMOTI-982", "label": "MIZUMOTI-982", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "ruru-she24", "label": "ruru-she24", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "hirotenx", "label": "hirotenx", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "aonohane", "label": "aonohane", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "sukemarutsumotsumo", "label": "sukemarutsumotsumo", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "sukemaru0303", "label": "sukemaru0303", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "wataru3", "label": "wataru3", "shape": "dot", "size": 10}]);
+                  edges = new vis.DataSet([{"color": "red", "from": "griffpatch", "to": "ryouga_xo3301", "width": 1}, {"color": "red", "from": "griffpatch", "to": "windowsphone10", "width": 1}, {"color": "red", "from": "griffpatch", "to": "SuperJJOx", "width": 1}, {"color": "red", "from": "griffpatch", "to": "HittlerFortnite-1942", "width": 1}, {"color": "red", "from": "griffpatch", "to": "-Garfeild-", "width": 1}, {"color": "red", "from": "griffpatch", "to": "advaydas", "width": 1}, {"color": "red", "from": "griffpatch", "to": "kazukazu1212", "width": 1}, {"color": "red", "from": "griffpatch", "to": "Ethanjohnstone0", "width": 1}, {"color": "red", "from": "griffpatch", "to": "FollowBot-1", "width": 1}, {"color": "red", "from": "griffpatch", "to": "Imnotamemeguy", "width": 1}, {"color": "red", "from": "griffpatch", "to": "bBoXd", "width": 1}, {"color": "red", "from": "griffpatch", "to": "Thwokmsm", "width": 1}, {"color": "red", "from": "griffpatch", "to": "CoolScratch94", "width": 1}, {"color": "red", "from": "griffpatch", "to": "dangkhoapeter", "width": 1}, {"color": "red", "from": "griffpatch", "to": "Jackwag11", "width": 1}, {"color": "red", "from": "griffpatch", "to": "donaldmcdonaldo", "width": 1}, {"color": "red", "from": "griffpatch", "to": "meiseei", "width": 1}, {"color": "red", "from": "griffpatch", "to": "20365168", "width": 1}, {"color": "red", "from": "griffpatch", "to": "bubs_26_butter", "width": 1}, {"color": "red", "from": "griffpatch", "to": "cecroxysoper27", "width": 1}, {"color": "red", "from": "griffpatch", "to": "frog_king200", "width": 1}, {"color": "red", "from": "griffpatch", "to": "JonathanTheTiger", "width": 1}, {"color": "red", "from": "griffpatch", "to": "2024bpps12", "width": 1}, {"color": "red", "from": "griffpatch", "to": "exervitory", "width": 1}, {"color": "red", "from": "griffpatch", "to": "MrSpeedyLeopard", "width": 1}, {"color": "red", "from": "griffpatch", "to": "LSW_Coding", "width": 1}, {"color": "red", "from": "griffpatch", "to": "nyanya727", "width": 1}, {"color": "red", "from": "griffpatch", "to": "takinosei", "width": 1}, {"color": "red", "from": "griffpatch", "to": "saidsuraj", "width": 1}, {"color": "red", "from": "griffpatch", "to": "pletworm", "width": 1}, {"color": "red", "from": "griffpatch", "to": "koukisakai", "width": 1}, {"color": "red", "from": "griffpatch", "to": "onigiri_ra-men", "width": 1}, {"color": "red", "from": "griffpatch", "to": "Scratch_poteto", "width": 1}, {"color": "red", "from": "griffpatch", "to": "julius100712", "width": 1}, {"color": "red", "from": "griffpatch", "to": "trangmoon", "width": 1}, {"color": "red", "from": "griffpatch", "to": "-_--AmongUS--_-", "width": 1}, {"color": "red", "from": "griffpatch", "to": "Quizley", "width": 1}, {"color": "red", "from": "griffpatch", "to": "Waffles-Are-Yummy", "width": 1}, {"color": "red", "from": "griffpatch", "to": "InsightPlays0666", "width": 1}, {"color": "red", "from": "griffpatch", "to": "oyakodonnsan", "width": 1}, {"from": "SuperJJOx", "to": "cherub_blossom", "width": 1}, {"from": "SuperJJOx", "to": "---Furturistic---", "width": 1}, {"from": "SuperJJOx", "to": "-gimik-", "width": 1}, {"from": "SuperJJOx", "to": "Cesto_Quitimaly678", "width": 1}, {"from": "SuperJJOx", "to": "MrYeastz", "width": 1}, {"from": "SuperJJOx", "to": "Lava-Bucket", "width": 1}, {"from": "SuperJJOx", "to": "scratcher101rbpl", "width": 1}, {"from": "SuperJJOx", "to": "Wanderer29", "width": 1}, {"from": "SuperJJOx", "to": "mxg9", "width": 1}, {"from": "SuperJJOx", "to": "DrParrot3", "width": 1}, {"from": "SuperJJOx", "to": "666devilman", "width": 1}, {"from": "SuperJJOx", "to": "Damian0718", "width": 1}, {"from": "SuperJJOx", "to": "FamilyFriendUsername", "width": 1}, {"from": "SuperJJOx", "to": "susysusBoi", "width": 1}, {"from": "SuperJJOx", "to": "KayALT", "width": 1}, {"from": "SuperJJOx", "to": "Graysonwillget100", "width": 1}, {"from": "SuperJJOx", "to": "yun0doodle", "width": 1}, {"from": "SuperJJOx", "to": "photos_2801", "width": 1}, {"from": "SuperJJOx", "to": "F23H11", "width": 1}, {"from": "SuperJJOx", "to": "TheVeryAverageCoder", "width": 1}, {"from": "SuperJJOx", "to": "HaoewsS", "width": 1}, {"from": "SuperJJOx", "to": "hutagotti_Z", "width": 1}, {"from": "SuperJJOx", "to": "-RandomFollower-", "width": 1}, {"from": "SuperJJOx", "to": "lNateHiggers1", "width": 1}, {"from": "SuperJJOx", "to": "Gamblefamnat", "width": 1}, {"from": "SuperJJOx", "to": "jamesthesealion", "width": 1}, {"from": "SuperJJOx", "to": "Jaxygaming", "width": 1}, {"from": "SuperJJOx", "to": "Capybara9897", "width": 1}, {"from": "SuperJJOx", "to": "OctoberGirl31", "width": 1}, {"from": "SuperJJOx", "to": "--Madness--", "width": 1}, {"from": "SuperJJOx", "to": "Cralastic", "width": 1}, {"from": "SuperJJOx", "to": "OIDHIF_F4F", "width": 1}, {"from": "SuperJJOx", "to": "ApeMaya24", "width": 1}, {"from": "SuperJJOx", "to": "percent-15", "width": 1}, {"from": "SuperJJOx", "to": "ScriptSensei", "width": 1}, {"from": "SuperJJOx", "to": "Tinixe", "width": 1}, {"from": "SuperJJOx", "to": "Iumination", "width": 1}, {"from": "SuperJJOx", "to": "MADDY_Lolha", "width": 1}, {"from": "SuperJJOx", "to": "plantbee", "width": 1}, {"from": "SuperJJOx", "to": "BrawlingThyme", "width": 1}, {"from": "-Garfeild-", "to": "1920A", "width": 1}, {"from": "-Garfeild-", "to": "Snoopy867", "width": 1}, {"from": "-Garfeild-", "to": "RINGADINGADOODLEDOO", "width": 1}, {"from": "-Garfeild-", "to": "Cooldomb4", "width": 1}, {"from": "-Garfeild-", "to": "Zoom234bp", "width": 1}, {"from": "-Garfeild-", "to": "tails2fan", "width": 1}, {"from": "-Garfeild-", "to": "9_py", "width": 1}, {"from": "-Garfeild-", "to": "MelloGangGames", "width": 1}, {"from": "-Garfeild-", "to": "norulesonmyprofile", "width": 1}, {"from": "-Garfeild-", "to": "automat3d", "width": 1}, {"from": "-Garfeild-", "to": "-hxneystar-", "width": 1}, {"from": "-Garfeild-", "to": "LordSpider123", "width": 1}, {"from": "-Garfeild-", "to": "Yydabeat123", "width": 1}, {"from": "-Garfeild-", "to": "SnickersTheTurtle", "width": 1}, {"from": "-Garfeild-", "to": "CereaII", "width": 1}, {"from": "-Garfeild-", "to": "scratchedu056jasonm", "width": 1}, {"from": "-Garfeild-", "to": "ryamcs31", "width": 1}, {"from": "-Garfeild-", "to": "Tinyau", "width": 1}, {"from": "-Garfeild-", "to": "xuserluvx", "width": 1}, {"from": "-Garfeild-", "to": "Fnouhmenl", "width": 1}, {"from": "-Garfeild-", "to": "Ender-Greatest", "width": 1}, {"from": "-Garfeild-", "to": "MrCrabb77", "width": 1}, {"from": "-Garfeild-", "to": "FamilyFriendUsername", "width": 1}, {"from": "-Garfeild-", "to": "antoniolucifero13", "width": 1}, {"from": "-Garfeild-", "to": "Dorky_Gal", "width": 1}, {"from": "-Garfeild-", "to": "Fashion_Guru", "width": 1}, {"from": "-Garfeild-", "to": "very__yummy", "width": 1}, {"from": "-Garfeild-", "to": "very_yummy", "width": 1}, {"from": "-Garfeild-", "to": "HOT_DIGGETY_DOG", "width": 1}, {"from": "-Garfeild-", "to": "Butter_on_a_pancake", "width": 1}, {"from": "-Garfeild-", "to": "Ninja22SCRATCH", "width": 1}, {"from": "-Garfeild-", "to": "Jade_Toucan", "width": 1}, {"from": "-Garfeild-", "to": "mastesword6", "width": 1}, {"from": "-Garfeild-", "to": "TheTinyDemon", "width": 1}, {"from": "-Garfeild-", "to": "Julian1274", "width": 1}, {"from": "-Garfeild-", "to": "Newtwon", "width": 1}, {"from": "-Garfeild-", "to": "sawyer_macleod", "width": 1}, {"from": "-Garfeild-", "to": "RayAsianBoy", "width": 1}, {"from": "-Garfeild-", "to": "jemby_me", "width": 1}, {"from": "-Garfeild-", "to": "Lobotomey", "width": 1}, {"from": "meiseei", "to": "kure-nnge-mu", "width": 1}, {"from": "meiseei", "to": "yotsuba-529", "width": 1}, {"from": "meiseei", "to": "nekozukiaisu", "width": 1}, {"from": "meiseei", "to": "snowbanana", "width": 1}, {"from": "meiseei", "to": "-OronxDonate-", "width": 1}, {"from": "meiseei", "to": "Ai_lin", "width": 1}, {"from": "meiseei", "to": "soma1109", "width": 1}, {"from": "meiseei", "to": "Hamutaroudayo", "width": 1}, {"from": "meiseei", "to": "aoirogasukinootouto", "width": 1}, {"from": "meiseei", "to": "karintou_", "width": 1}, {"from": "meiseei", "to": "hugdsyegasydvgy", "width": 1}, {"from": "meiseei", "to": "taku787", "width": 1}, {"from": "meiseei", "to": "Syougooooooooo", "width": 1}, {"from": "meiseei", "to": "tuiki_0324", "width": 1}, {"from": "meiseei", "to": "sukurattyann", "width": 1}, {"from": "meiseei", "to": "Gauru_1031", "width": 1}, {"from": "meiseei", "to": "69074123", "width": 1}, {"from": "meiseei", "to": "yuu328yama", "width": 1}, {"from": "meiseei", "to": "shioupc", "width": 1}, {"from": "meiseei", "to": "5108iii", "width": 1}, {"from": "meiseei", "to": "akapennmarutuke", "width": 1}, {"from": "meiseei", "to": "uka_v6893No2", "width": 1}, {"from": "meiseei", "to": "LIZ_0504", "width": 1}, {"from": "meiseei", "to": "ekepon_22", "width": 1}, {"from": "meiseei", "to": "OPT2049", "width": 1}, {"from": "meiseei", "to": "kei011700", "width": 1}, {"from": "meiseei", "to": "Masukaanya3", "width": 1}, {"from": "meiseei", "to": "moka-mogu-kami", "width": 1}, {"from": "meiseei", "to": "haruharu_06", "width": 1}, {"from": "meiseei", "to": "umino-kurage", "width": 1}, {"from": "meiseei", "to": "haruharu8863", "width": 1}, {"from": "meiseei", "to": "banana-king469", "width": 1}, {"from": "meiseei", "to": "SBTNOY", "width": 1}, {"from": "meiseei", "to": "yama-sada-kotonoha", "width": 1}, {"from": "meiseei", "to": "IQ100-haru_clone", "width": 1}, {"from": "meiseei", "to": "akatsukibook", "width": 1}, {"from": "meiseei", "to": "cheeseokaka", "width": 1}, {"from": "meiseei", "to": "ox_xz", "width": 1}, {"from": "meiseei", "to": "0penCode", "width": 1}, {"from": "meiseei", "to": "GeeNaas", "width": 1}, {"from": "frog_king200", "to": "CR7sewwwy", "width": 1}, {"from": "frog_king200", "to": "MissStevenson06", "width": 1}, {"from": "2024bpps12", "to": "2024bpps09", "width": 1}, {"from": "2024bpps12", "to": "GAtrainer04", "width": 1}, {"from": "koukisakai", "to": "mini_Chimy", "width": 1}, {"from": "koukisakai", "to": "BEBETANN", "width": 1}, {"from": "koukisakai", "to": "LaAlpha", "width": 1}, {"from": "koukisakai", "to": "y-za", "width": 1}, {"from": "koukisakai", "to": "yuysusi", "width": 1}, {"from": "koukisakai", "to": "Cheese-Cheeze", "width": 1}, {"from": "koukisakai", "to": "gudetama-train", "width": 1}, {"from": "koukisakai", "to": "siokosyou89", "width": 1}, {"from": "koukisakai", "to": "yyyyyyuuriZ", "width": 1}, {"from": "koukisakai", "to": "Far_wisteria", "width": 1}, {"from": "koukisakai", "to": "saindaaa", "width": 1}, {"from": "koukisakai", "to": "soroban-4", "width": 1}, {"from": "koukisakai", "to": "okudadayo", "width": 1}, {"from": "koukisakai", "to": "fox082", "width": 1}, {"from": "koukisakai", "to": "-wooperlooper-", "width": 1}, {"from": "koukisakai", "to": "Mr-xewyt", "width": 1}, {"from": "koukisakai", "to": "konbinisinja_", "width": 1}, {"from": "koukisakai", "to": "monta-supesu", "width": 1}, {"from": "koukisakai", "to": "yunagai1212", "width": 1}, {"from": "koukisakai", "to": "Takke-20120402", "width": 1}, {"from": "koukisakai", "to": "AKIO12627", "width": 1}, {"from": "koukisakai", "to": "nozomochi", "width": 1}, {"from": "koukisakai", "to": "ebiten123", "width": 1}, {"from": "koukisakai", "to": "rituto13", "width": 1}, {"from": "koukisakai", "to": "ky3141", "width": 1}, {"from": "koukisakai", "to": "omuraisukun-", "width": 1}, {"from": "koukisakai", "to": "mic_c", "width": 1}, {"from": "koukisakai", "to": "sa-mondayo", "width": 1}, {"from": "koukisakai", "to": "scratca-0211", "width": 1}, {"from": "koukisakai", "to": "scratchcat_0905_2", "width": 1}, {"from": "koukisakai", "to": "kirbyDorifuto", "width": 1}, {"from": "koukisakai", "to": "123kura", "width": 1}, {"from": "koukisakai", "to": "tanosikuyaruzo", "width": 1}, {"from": "koukisakai", "to": "nekozou28", "width": 1}, {"from": "koukisakai", "to": "WDM177", "width": 1}, {"from": "koukisakai", "to": "kira0505", "width": 1}, {"from": "koukisakai", "to": "keitan2008", "width": 1}, {"from": "koukisakai", "to": "gussuri", "width": 1}, {"from": "koukisakai", "to": "Eight8885961", "width": 1}, {"from": "koukisakai", "to": "Diszirukonn", "width": 1}, {"from": "oyakodonnsan", "to": "ZHWK_Test", "width": 1}, {"from": "oyakodonnsan", "to": "sukura111", "width": 1}, {"from": "oyakodonnsan", "to": "aki078533", "width": 1}, {"from": "oyakodonnsan", "to": "funfunkotetsu", "width": 1}, {"from": "oyakodonnsan", "to": "nagisatti", "width": 1}, {"from": "oyakodonnsan", "to": "ariann-", "width": 1}, {"from": "oyakodonnsan", "to": "swios", "width": 1}, {"from": "oyakodonnsan", "to": "Dragon-TV-", "width": 1}, {"from": "oyakodonnsan", "to": "kuragemikkusu", "width": 1}, {"from": "oyakodonnsan", "to": "9090---", "width": 1}, {"from": "oyakodonnsan", "to": "braised_pork", "width": 1}, {"from": "oyakodonnsan", "to": "simasimayuu", "width": 1}, {"from": "oyakodonnsan", "to": "_K_U_R_O_", "width": 1}, {"from": "oyakodonnsan", "to": "Tarako282", "width": 1}, {"from": "oyakodonnsan", "to": "nityounopisutoru", "width": 1}, {"from": "oyakodonnsan", "to": "44166144", "width": 1}, {"from": "oyakodonnsan", "to": "tomato6868---2---", "width": 1}, {"from": "oyakodonnsan", "to": "galomaRU1012", "width": 1}, {"from": "oyakodonnsan", "to": "games61100102", "width": 1}, {"from": "oyakodonnsan", "to": "uhhyhhyhhhh", "width": 1}, {"from": "oyakodonnsan", "to": "localbridge", "width": 1}, {"from": "oyakodonnsan", "to": "tukonohaJP", "width": 1}, {"from": "oyakodonnsan", "to": "Hinaka09", "width": 1}, {"from": "oyakodonnsan", "to": "gomane", "width": 1}, {"from": "oyakodonnsan", "to": "yuki-0713", "width": 1}, {"from": "oyakodonnsan", "to": "kamo2syo", "width": 1}, {"from": "oyakodonnsan", "to": "yukalin", "width": 1}, {"from": "oyakodonnsan", "to": "mash2020", "width": 1}, {"from": "oyakodonnsan", "to": "Kanikama198", "width": 1}, {"from": "oyakodonnsan", "to": "ryuou09", "width": 1}, {"from": "oyakodonnsan", "to": "ojamajo1111", "width": 1}, {"from": "oyakodonnsan", "to": "yamatanodaija", "width": 1}, {"from": "oyakodonnsan", "to": "kamesiki", "width": 1}, {"from": "oyakodonnsan", "to": "MIZUMOTI-982", "width": 1}, {"from": "oyakodonnsan", "to": "ruru-she24", "width": 1}, {"from": "oyakodonnsan", "to": "hirotenx", "width": 1}, {"from": "oyakodonnsan", "to": "aonohane", "width": 1}, {"from": "oyakodonnsan", "to": "sukemarutsumotsumo", "width": 1}, {"from": "oyakodonnsan", "to": "sukemaru0303", "width": 1}, {"from": "oyakodonnsan", "to": "wataru3", "width": 1}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+                      network.on("stabilizationProgress", function(params) {
+                          document.getElementById('loadingBar').removeAttribute("style");
+                          var maxWidth = 496;
+                          var minWidth = 20;
+                          var widthFactor = params.iterations/params.total;
+                          var width = Math.max(minWidth,maxWidth * widthFactor);
+                          document.getElementById('bar').style.width = width + 'px';
+                          document.getElementById('text').innerHTML = Math.round(widthFactor*100) + '%';
+                      });
+                      network.once("stabilizationIterationsDone", function() {
+                          document.getElementById('text').innerHTML = '100%';
+                          document.getElementById('bar').style.width = '496px';
+                          document.getElementById('loadingBar').style.opacity = 0;
+                          // really clean the dom element
+                          setTimeout(function () {document.getElementById('loadingBar').style.display = 'none';}, 500);
+                      });
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>

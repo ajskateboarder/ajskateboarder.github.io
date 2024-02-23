@@ -1,5 +1,7 @@
 # Combining concrete rules and machine learning for classification
 
+<kbd>machine-learning</kbd> <kbd>rule-systems</kbd>
+
 Currently, I am developing (or have developed?) [Wordsmyth](https://github.com/ajskateboarder/wordsmyth), a star rating prediction model designed to tackle the bias and incorrectness of the consumer star system through sentiment analysis and rules. This system allows you to use the pros of both rule-based systems:
 
 - simple to build and interpret
@@ -20,7 +22,7 @@ In simpler terms, this is the layout of the system:
 
 ![Simpler layout](./simple-layout.png)
 
-What's honestly weird about this approach is that, in this ever-growing ecosystem of machine learning, there are so few applications of this approach online!! Aside from the [few blogs](#related) I found that cover this idea, there are no projects to be found that apply a similar methodology; everybody is just talking about how nice the approach. So let me fix that - by reviewing code that applies this logic in action.
+What's honestly weird about this approach is that, in this ever-growing ecosystem of machine learning, there are so few applications of this approach online!! Aside from the [few blogs](#related) I found that cover this idea, there are no projects to be found that apply a similar methodology; everybody is just talking about how nice the approach is. So let me fix that - by reviewing code that applies this logic in action.
 
 Obviously, the code being reviewed will be domain-specific, and I know this just looks like a whole explanation of an algorithm I developed, but this post should hopefully help for those who want an example of how to implement a ML -> rules system.
 
@@ -228,10 +230,10 @@ self.flags = [flag for flag, condition in conditions.items() if condition]
 
 Here are descriptions for flags that aren't particularly self-explainable:
 
-- **EMOJIS_ARE_POSITIVE:** any of the emojis predicted by `torchmoji` are positive - this implies that the text is at least somewhat positive
-- **NEG_FLAIR_CONTRADICTING/NEG_EMOJI_CONTRADICTING:** the responses of either model are negative and there are conjugations present in the text
-- **POS_FLAIR_CONTRADICTING/POS_EMOJI_CONTRADICTING:** the responses of either model are negative and there are certain conjugations present in the text
-- **POS_FLAIR_CONJUGATIONS/NEG_FLAIR_CONJUGATIONS:** the responses of `flair` are positive or negative and there are certain conjugations present in the text
+- **`EMOJIS_ARE_POSITIVE`:** any of the emojis predicted by `torchmoji` are positive - this implies that the text is at least somewhat positive
+- **`NEG_FLAIR_CONTRADICTING`/`NEG_EMOJI_CONTRADICTING`:** the responses of either model are negative and there are conjugations present in the text
+- **`POS_FLAIR_CONTRADICTING`/`POS_EMOJI_CONTRADICTING`:** the responses of either model are negative and there are certain conjugations present in the text
+- **`POS_FLAIR_CONJUGATIONS`/`NEG_FLAIR_CONJUGATIONS`:** the responses of `flair` are positive or negative and there are certain conjugations present in the text
 
 This is pretty simple to interpret thanks to Python's syntax. The flags are chosen based on if each flag's condition from the dictionary is true.
 
