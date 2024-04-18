@@ -4,6 +4,8 @@
 
 Most of these involve breaking down a personal project and providing general insight. It can also just be for giggles.
 
+~~I guess I could also use this to indirectly talk about my projects for a CV or resume lol~~
+
 ### [Attempts to make a Python templating system that isn't bad](/xpy)
 
 <kbd>python</kbd> <kbd>jsx-templates</kbd>
@@ -19,6 +21,10 @@ Most of these involve breaking down a personal project and providing general ins
 ### [A network analysis of the Scratch community](/scratch-net-analysis)
 
 <kbd>python</kbd> <kbd>graph-theory</kbd> <kbd>social-networks</kbd>
+
+### [Large userscript shenanigans](/userscript-shenanigans)
+
+<kbd>rust</kbd> <kbd>js/ts</kbd> <kbd>decision-making-hell</kbd>
 
 ## Miscellaneous stuff
 

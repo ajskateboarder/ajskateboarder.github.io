@@ -7,7 +7,7 @@
 
 <kbd>python</kbd> <kbd>jsx-templates</kbd>
 
-<sub>This is one of my first ever blog posts on software; if I ever sound verbose, apologies in advance</sub>
+<sub>This is one of my first ever blog posts, so this project is just kind of filler</sub>
 
 The source code for this is available on GitHub: [https://github.com/ajskateboarder/xpy](https://github.com/ajskateboarder/xpy)
 
