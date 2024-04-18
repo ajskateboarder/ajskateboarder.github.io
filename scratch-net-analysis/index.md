@@ -11,7 +11,7 @@ Because why not? Scratch sure doesn't have a lot of analysis projects for the si
 
 The source code for this is available on GitHub, as usual: [https://github.com/ajskateboarder/ajskateboarder.github.io/blob/main/scratch-net-analysis/net.py](https://github.com/ajskateboarder/ajskateboarder.github.io/blob/main/scratch-net-analysis/net.py) (didn't really need its own repo since it was pretty small)
 
-For my analysis, I use Python, [NetworkX](https://networkx.org/) to construct the network, and [PyVis](https://pyvis.readthedocs.io/) to create interactive visualizations of the networks (lesson learned, do not use matplotlib for graphs with over 30 nodes). And of course, I use the [requests](https://requests.readthedocs.io/en/latest/) library for accessing Scratch's API for [aggregate follower data](https://towerofnix.github.io/scratch-api-unofficial-docs/api/users.html).
+For my analysis, I use Python, [NetworkX](https://networkx.org/) to construct the network, and [PyVis](https://pyvis.readthedocs.io/) to create interactive visualizations of the networks (lesson learned, do not use matplotlib for graphs with over 30 nodes). And of course, I use the [requests](https://requests.readthedocs.io/en/latest/) library for accessing Scratch's API to [aggregate follower data](https://towerofnix.github.io/scratch-api-unofficial-docs/api/users.html).
 
 ## Review
 
@@ -119,8 +119,9 @@ I'll update the blog later with these things
 
 - Set size of user nodes based on number of followers
 - Measure number of steps to reach certain profiles
+- Prove [6 degrees of separation](https://en.wikipedia.org/wiki/Six_degrees_of_separation) (im pretty sure this was the whole point of the project so not doing this is a big womp womp)
 - Keyword stuff with user descriptions to topic model communities
 
 ## Check out
 
-- https://awesome-llama.github.io/articles/statistics
+- https://awesome-llama.github.io/articles/statistics - not quite related graph-wise, but it *is* Scratch statistics
