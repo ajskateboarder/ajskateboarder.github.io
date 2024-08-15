@@ -1,6 +1,6 @@
 # [ajskateboarder.github.io](//ajskateboarder.github.io)
 
-## Blogs
+## Notes
 
 Most of these involve breaking down a personal project and providing general insight. It can also just be for giggles.
 
