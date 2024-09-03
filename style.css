@@ -1,0 +1,64 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.top-bar-thing-wrapper {
+    display: flex;
+}
+
+.spin-wrapper {
+    perspective: 500px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
+
+.spinner {
+    text-align: center;
+    animation-name: spin, depth;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-duration: 3s;
+    background: rgba(100, 255, 255, 0.5);
+    border: 1px dashed rgba(100, 155, 255, 1);
+    position: absolute
+}
+
+@keyframes spin {
+    from {
+        transform: rotateY(0deg);
+    }
+
+    to {
+        transform: rotateY(-360deg);
+    }
+}
+
+@keyframes depth {
+    0% {
+        text-shadow: 0 0 black;
+        font-family: "Nerko One", cursive;
+    }
+
+    25% {
+        text-shadow: 1px 0 black, 2px 0 black, 3px 0 black, 4px 0 black, 5px 0 black;
+        font-family: "Playwrite CU", cursive;
+    }
+
+    50% {
+        text-shadow: 0 0 black;
+        font-family: monospace;
+    }
+
+    75% {
+        text-shadow: -1px 0 black, -2px 0 black, -3px 0 black, -4px 0 black, -5px 0 black;
+    }
+
+    100% {
+        text-shadow: 0 0 black;
+    }
+}

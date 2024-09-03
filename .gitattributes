@@ -1,4 +1,4 @@
 *.md linguist-documentation=false
 *.md linguist-detectable
-scratch-net-analysis/net.py linguist-vendored=true
-scratch-net-analysis/*.html linguist-vendored=true
+notes/scratch-net-analysis/net.py linguist-vendored=true
+notes/scratch-net-analysis/*.html linguist-vendored=true
