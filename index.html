@@ -15,9 +15,85 @@
 <body>
     <div class="top-bar-thing-wrapper">
         <div class="spin-wrapper">
-            <h1 class="spinner">ajskateboarder</h1>
+            <div class="spin-center-wrapper">
+                <h1 class="spinner">ajskateboarder</h1>
+            </div>
+        </div>
+        <div class="inspect-wrapper">
+            <div class="inspect-css-wrapper">
+                <span class="css-script" id="spinnerText" style="display: none">
+                    <span>.spinner {</span>
+                    <span class="rule" style="opacity: 0.5;" title="You cannot change this property for some reason...">
+                        <input type="checkbox" checked disabled>
+                        <span style="color: lightgreen">cursed-properties: </span><span>font-family</span>
+                    </span>
+                    <span class="rule">
+                        <input type="checkbox" checked disabled>
+                        <span style="color: lightgreen">font-family: </span><span class="value"
+                            id="font">monospace</span>
+                    </span>
+                    <span class="rule">
+                        <input type="range" id="fontSize" min="2" value="2" max="100" style="width: 30px">
+                        <span style="color: lightgreen">font-size: </span><span id="font"><span class="value"
+                                id="fontSizeOut">2</span> em</span>
+                    </span>
+                    <span>}</span>
+                </span>
+                <span class="css-script" id="body" style="display: none">
+                    <span>body {</span>
+                    <span class="rule">
+                        <input type="checkbox" checked disabled>
+                        <span style="color: lightgreen">background-color: </span><span>none</span>
+                    </span>
+                    <span>}</span>
+                    <span>body:hover {</span>
+                    <span class="rule">
+                        <input type="checkbox" checked disabled>
+                        <span style="color: lightgreen">background-color: </span><span
+                            style="background: rgba(100, 255, 55, 0.2)">rgba(100, 255, 55, 0.2)</span>
+                    </span>
+                    <span>}</span>
+                </span>
+            </div>
         </div>
     </div>
 </body>
+
+<script>
+    const $ = document.querySelector.bind(document)
+
+    $(".spinner").onclick = (e) => {
+        e.stopPropagation()
+        document.querySelectorAll(".css-script").forEach((e) => (e.style.display = "none"));
+        $("#spinnerText").style.display = "flex";
+    }
+
+    $(".spin-wrapper").onclick = (e) => {
+        e.stopPropagation()
+        document.querySelectorAll(".css-script").forEach((e) => (e.style.display = "none"));
+        $("#body").style.display = "flex"
+    }
+
+    $("#fontSize").oninput = (e) => {
+        $("#fontSizeOut").outerHTML = `<span class="value" id="fontSizeOut">${e.target.value}</span>`
+        $(".spinner").style.fontSize = `${e.target.value}em`
+    }
+
+    let fontI = 0;
+    const fonts = ["\"Nerko One\", cursive", "\"Playwrite CU\", cursive", "monospace", "sans-serif", "sans-serif",]
+
+    setTimeout(() => {
+        setInterval(() => {
+            if (fontI > 4) fontI = 0;
+            if (fonts[fontI] !== fonts[fontI - 1]) $("#font").outerHTML = `<span class="value" id="font">${fonts[fontI]}</span>`
+            fontI++;
+        }, 600)
+    }, 2300);
+
+    /** @type {HTMLElement} */ ($(".spin-wrapper")).ondblclick = () => {
+        $(".spin-wrapper").classList.toggle("resized")
+        $(".inspect-wrapper").classList.toggle("resized")
+    }
+</script>
 
 </html>
