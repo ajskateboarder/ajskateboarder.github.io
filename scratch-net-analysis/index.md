@@ -5,8 +5,6 @@
   <figcaption>Snippet of follower graph</figcaption>
 </figure>
 
-<kbd>python</kbd> <kbd>graph-theory</kbd> <kbd>social-networks</kbd>
-
 Because why not? Scratch sure doesn't have a lot of analysis projects for the size of its community, let alone any graph analyses it seems. Also I thought it was cool to see what silly topics I could infer people like from followers -- in other words, seeing what's cool with the 8 year olds. If you've never thought of the follow system as a friendship system or if you've [never thought of Scratch as a social media](https://ocular.jeffalo.net/search?q=scratch%20is%20not%20a%20social%20media%20%2Bcategory%3A%22Suggestions%22&sort=relevance), this visualization couldn't make these qualifications any less obvious. Aside from visualizations, we could also have a basic follower recommendation system using this approach.
 
 The source code for this is available on GitHub, as usual: [https://github.com/ajskateboarder/ajskateboarder.github.io/blob/main/scratch-net-analysis/net.py](https://github.com/ajskateboarder/ajskateboarder.github.io/blob/main/scratch-net-analysis/net.py) (didn't really need its own repo since it was pretty small)

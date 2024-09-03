@@ -5,8 +5,6 @@
   <figcaption>Scraping process with headless mode disabled</figcaption>
 </figure>
 
-<kbd>python</kbd> <kbd>selenium</kbd> <kbd>web-scraping</kbd> <kbd>ecommerce</kbd>
-
 The source code for this is available on GitHub: [https://github.com/ajskateboarder/wordsmyth/tree/minimal/src/crawling](https://github.com/ajskateboarder/wordsmyth/tree/minimal/src/crawling)
 
 Web scraping, particularly for the purpose of building large datasets, is often overlooked when speed is required. I have yet to see a project out in the wild that parallelizes Selenium instances, which is frankly kind of weird since it's what powers a majority of data driven projects and datasets. Like, how did [this dataset](https://jmcauley.ucsd.edu/data/amazon/) come into fruition, which definitely wasn't built from a synchronous web scraper? 

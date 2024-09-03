@@ -1,7 +1,5 @@
 # Combining concrete rules and machine learning for classification
 
-<kbd>machine-learning</kbd> <kbd>rule-systems</kbd>
-
 Currently, I am developing (or have developed?) [Wordsmyth](https://github.com/ajskateboarder/wordsmyth), a star rating prediction model designed to tackle the bias and incorrectness of the consumer star system through sentiment analysis and rules. This system allows you to use the pros of both rule-based systems:
 
 - simple to build and interpret
