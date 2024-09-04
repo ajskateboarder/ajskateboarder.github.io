@@ -23,7 +23,7 @@
 }
 
 .spin-wrapper.resized:hover {
-    background: rgba(100, 255, 55, 0.2);
+    background: #6b1212, rgba(100, 255, 55, 0.2);
 }
 
 .spin-center-wrapper {
@@ -62,26 +62,26 @@ body:has(.resized .spinner:hover) .spin-center-wrapper {
 
 @keyframes depth {
     0% {
-        text-shadow: 0 0 black;
+        text-shadow: 0 0 var(--header-shadow);
         font-family: "Nerko One", cursive;
     }
 
     25% {
-        text-shadow: 1px 0 black, 2px 0 black, 3px 0 black, 4px 0 black, 5px 0 black;
+        text-shadow: 1px 0 var(--header-shadow), 2px 0 var(--header-shadow), 3px 0 var(--header-shadow), 4px 0 var(--header-shadow), 5px 0 var(--header-shadow);
         font-family: "Playwrite CU", cursive;
     }
 
     50% {
-        text-shadow: 0 0 black;
+        text-shadow: 0 0 var(--header-shadow);
         font-family: monospace;
     }
 
     75% {
-        text-shadow: -1px 0 black, -2px 0 black, -3px 0 black, -4px 0 black, -5px 0 black;
+        text-shadow: -1px 0 var(--header-shadow), -2px 0 var(--header-shadow), -3px 0 var(--header-shadow), -4px 0 var(--header-shadow), -5px 0 var(--header-shadow);
     }
 
     100% {
-        text-shadow: 0 0 black;
+        text-shadow: 0 0 var(--header-shadow);
     }
 }
 
@@ -125,4 +125,10 @@ body:has(.resized .spinner:hover) .spin-center-wrapper {
     to {
         background: transparent;
     }
+}
+
+.red {
+    color: #e82e2e;
+    background-color: #6b1212;
+    --header-shadow: #e82e2e;
 }
