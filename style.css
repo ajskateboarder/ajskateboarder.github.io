@@ -6,7 +6,23 @@
 }
 
 body {
-    font-family: monospace;
+    font-family: "Open Sans", sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #111;
+        color: white
+    }
+
+    .inspect-wrapper {
+        background-color: #111;
+        color: white;
+    }
+
+    .property {
+        color: lightgreen;
+    }
 }
 
 .top-bar-thing-wrapper {
@@ -42,6 +58,7 @@ body {
 
 .spinner {
     text-align: center;
+    user-select: none;
 }
 
 .resized .spinner:hover {
@@ -52,6 +69,33 @@ body {
 body:has(.resized .spinner:hover) .spin-center-wrapper {
     border-left: 1.9px dashed var(--element-border);
     border-right: 1.9px dashed var(--element-border);
+}
+
+#spinnerRef:hover, #bodyRef:hover {
+    cursor: pointer;
+}
+
+body:has(#spinnerRef:hover) {
+    .resized .spinner {
+        background: rgba(100, 255, 255, 0.5);
+        border: 1.9px dashed rgba(100, 155, 255, 1);
+    }
+
+    .spin-center-wrapper {
+        border-left: 1.9px dashed var(--element-border);
+        border-right: 1.9px dashed var(--element-border);
+    }
+}
+
+body:has(#bodyRef:hover) {
+    .resized .spinner {
+        color: rgb(136, 67, 67);
+        --header-shadow: rgb(136, 67, 67);
+    }
+
+    .resized.spin-wrapper {
+        background: rgb(70, 94, 101);
+    }
 }
 
 body:has(.spin-wrapper.resized:hover) .spinner {
@@ -87,6 +131,7 @@ body:has(.spin-wrapper.resized:hover) .spinner {
 
     75% {
         text-shadow: -1px 0 var(--header-shadow), -2px 0 var(--header-shadow), -3px 0 var(--header-shadow), -4px 0 var(--header-shadow), -5px 0 var(--header-shadow);
+        font-family: "Open Sans", sans-serif;
     }
 
     100% {
@@ -95,8 +140,8 @@ body:has(.spin-wrapper.resized:hover) .spinner {
 }
 
 .inspect-wrapper {
-    background-color: #222;
-    color: white;
+    background-color: #eee;
+    color: black;
     font-family: sans-serif;
     width: 0%;
 }
@@ -119,7 +164,11 @@ body:has(.spin-wrapper.resized:hover) .spinner {
     margin-left: 20px;
     display: flex;
     align-items: center;
-    gap: 10px
+    gap: 10px;
+}
+
+.property {
+    color: green;
 }
 
 .value {

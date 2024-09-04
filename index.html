@@ -7,7 +7,7 @@
     <title>ajskateboarder</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nerko+One&family=Playwrite+CU:wght@100..400&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Nerko+One&family=Playwrite+CU&family=Open+Sans&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -22,28 +22,37 @@
         <div class="inspect-wrapper">
             <div class="inspect-css-wrapper">
                 <span class="css-script" id="spinnerText" style="display: none">
-                    <span>.spinner {</span>
-                    <span class="rule" style="opacity: 0.5;" title="You cannot change this property for some reason...">
-                        <input type="checkbox" checked disabled>
-                        <span style="color: lightgreen">cursed-properties: </span><span>font-family</span>
-                    </span>
-                    <span class="rule">
-                        <input type="checkbox" checked disabled>
-                        <span style="color: lightgreen">font-family: </span><span class="value"
-                            id="font">monospace</span>
-                    </span>
-                    <span class="rule">
-                        <input type="range" id="fontSize" min="2" value="2" max="100" style="width: 30px">
-                        <span style="color: lightgreen">font-size: </span><span id="font"><span class="value"
-                                id="fontSizeOut">2</span> em</span>
-                    </span>
-                    <span>}</span>
+                    <details id="detailsRef">
+                        <summary></summary>
+                        <span id="spinnerRef">.spinner {</span>
+                        <span class="rule" style="opacity: 0.5;"
+                            title="You cannot change this property for some reason...">
+                            <input type="checkbox" checked disabled>
+                            <span class="property">cursed-properties: </span><span>font-family</span>
+                        </span>
+                        <span class="rule">
+                            <input type="checkbox" checked disabled>
+                            <span class="property">font-family: </span><span class="value" id="font">monospace</span>
+                        </span>
+                        <span class="rule">
+                            <input type="range" id="fontSize" min="2" value="2" max="100" style="width: 30px">
+                            <span class="property">font-size: </span><span id="font"><span class="value"
+                                    id="fontSizeOut">2</span> em</span>
+                        </span>
+                        <span class="rule">
+                            <input type="range" id="spinRotation" min="0.01" value="3" step="0.01" max="3"
+                                style="width: 30px">
+                            <span class="property">spinniness: </span><span id="font"><span class="value"
+                                    id="spinRotationOut">3</span> s</span>
+                        </span>
+                        <span>}</span>
+                    </details>
                 </span>
                 <span class="css-script" id="body" style="display: none">
-                    <span>body {</span>
+                    <span id="bodyRef">body {</span>
                     <span class="rule">
                         <input type="checkbox" checked disabled>
-                        <span style="color: lightgreen">background-color: </span><span class="red"
+                        <span class="property">background-color: </span><span class="red"
                             style="color: white">#6b1212</span>
                     </span>
                     <span>}</span>
@@ -51,7 +60,7 @@
                     <span>body:hover {</span>
                     <span class="rule">
                         <input type="checkbox" checked disabled>
-                        <span style="color: lightgreen">background-color: </span><span style="background-color: rgb(70, 94,
+                        <span class="property">background-color: </span><span style="background-color: rgb(70, 94,
                             101);">rgb(70, 94,
                             101)</span>
                     </span>
@@ -60,11 +69,27 @@
             </div>
         </div>
     </div>
+    <br>
     <h4 style="text-align: center;">web dev</h4>
 </body>
 
 <script>
     const $ = document.querySelector.bind(document)
+    let opened = false;
+
+    $("#detailsRef").onclick = (e) => {
+        if (!opened) {
+            e.preventDefault();
+            alert("ok so you didn't hear this from me")
+            alert("but")
+            alert("this uses some leaked features that w3c hasn't announced yet")
+            alert("i doubt these will ever get into css but i found some doc for some fancy css6 features")
+            alert("c:")
+            alert("you didn't hear that from me")
+            $("#detailsRef").open = true;
+            opened = true
+        }
+    }
 
     $(".spinner").onclick = (e) => {
         e.stopPropagation()
@@ -78,13 +103,18 @@
         $("#body").style.display = "flex"
     }
 
+    $("#spinRotation").oninput = (e) => {
+        $("#spinRotationOut").outerHTML = `<span class="value" id="spinRotationOut">${e.target.value}</span>`
+        $(".spin-center-wrapper").style.animationDuration = `${e.target.value}s`;
+    }
+
     $("#fontSize").oninput = (e) => {
         $("#fontSizeOut").outerHTML = `<span class="value" id="fontSizeOut">${e.target.value}</span>`
-        $(".spinner").style.fontSize = `${e.target.value}em`
+        $(".spinner").style.fontSize = `${e.target.value}em`;
     }
 
     let fontI = 0;
-    const fonts = ["\"Nerko One\", cursive", "\"Playwrite CU\", cursive", "monospace", "sans-serif", "sans-serif",]
+    const fonts = ["\"Nerko One\", cursive", "\"Playwrite CU\", cursive", "monospace", "\"Open Sans\", sans-serif", "sans-serif",]
 
     setTimeout(() => {
         setInterval(() => {
