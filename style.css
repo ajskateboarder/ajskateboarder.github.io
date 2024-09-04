@@ -5,6 +5,10 @@
     --element-border: rgba(100, 155, 255, 1);
 }
 
+body {
+    font-family: monospace;
+}
+
 .top-bar-thing-wrapper {
     display: flex;
 }
@@ -23,7 +27,7 @@
 }
 
 .spin-wrapper.resized:hover {
-    background: #6b1212, rgba(100, 255, 55, 0.2);
+    background: rgb(70, 94, 101);
 }
 
 .spin-center-wrapper {
@@ -48,6 +52,11 @@
 body:has(.resized .spinner:hover) .spin-center-wrapper {
     border-left: 1.9px dashed var(--element-border);
     border-right: 1.9px dashed var(--element-border);
+}
+
+body:has(.spin-wrapper.resized:hover) .spinner {
+    color: rgb(136, 67, 67);
+    --header-shadow: rgb(136, 67, 67);
 }
 
 @keyframes spin {
