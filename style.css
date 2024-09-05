@@ -9,22 +9,6 @@ body {
     font-family: "Open Sans", sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-    body {
-        background-color: #111;
-        color: white
-    }
-
-    .inspect-wrapper {
-        background-color: #111;
-        color: white;
-    }
-
-    .property {
-        color: lightgreen;
-    }
-}
-
 .top-bar-thing-wrapper {
     display: flex;
 }
@@ -189,4 +173,20 @@ body:has(.spin-wrapper.resized:hover) .spinner {
     color: #e82e2e;
     background-color: #6b1212;
     --header-shadow: #e82e2e;
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #111;
+        color: white;
+    }
+
+    .inspect-wrapper {
+        background-color: #222;
+        color: white;
+    }
+
+    .property {
+        color: lightgreen;
+    }
 }
