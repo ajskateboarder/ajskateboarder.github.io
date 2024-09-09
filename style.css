@@ -20,6 +20,7 @@ body {
     justify-content: center;
     width: 100%;
     transition: width 0.6s cubic-bezier(0.075, 0.82, 0.165, 1);
+    overflow: hidden;
 }
 
 .resized {
@@ -55,7 +56,8 @@ body:has(.resized .spinner:hover) .spin-center-wrapper {
     border-right: 1.9px dashed var(--element-border);
 }
 
-#spinnerRef:hover, #bodyRef:hover {
+#spinnerRef:hover,
+#bodyRef:hover {
     cursor: pointer;
 }
 
@@ -188,5 +190,52 @@ body:has(.spin-wrapper.resized:hover) .spinner {
 
     .property {
         color: lightgreen;
+    }
+
+    a {
+        color: white;
+        font-weight: bold;
+    }
+
+    a:visited {
+        color: #909090;
+    }
+
+    .thing>img.supports-dark-mode {
+        filter: invert(1);
+    }
+}
+
+.thing {
+    display: flex;
+    gap: 1rem;
+    font-size: 15px;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    align-items: center;
+
+    & > img {
+        width: 72px;
+        height: 72px;
+        flex-shrink: 0;
+    }
+
+    & > div {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    & > div >* {
+        margin: 0;
+    }
+
+    & .links {
+        opacity: 0.8;
+        font-size: smaller;
+    }
+
+    & .links a {
+        color: inherit;
     }
 }
