@@ -1,8 +1,6 @@
 # Notes
 
-Most of these involve breaking down a personal project and providing general insight. It can also just be for giggles.
-
-~~I guess I could also use this to indirectly talk about my projects for a CV or resume lol~~
+Most of these involve me talking about a personal project. It can also just be for giggles and stuff
 
 ### [Attempts to make a Python templating system that isn't bad](xpy)
 
@@ -13,3 +11,5 @@ Most of these involve breaking down a personal project and providing general ins
 ### [A network analysis of the Scratch community](scratch-net-analysis)
 
 ### [JS "style guide"](js-style-guide)
+
+### [Self-hosting](self-hosting)
