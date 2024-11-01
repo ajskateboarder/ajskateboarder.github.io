@@ -1,5 +1,7 @@
 # Combining concrete rules and machine learning for classification
 
+february 5, 2024
+
 Currently, I am developing (or have developed?) [Wordsmyth](https://github.com/ajskateboarder/wordsmyth), a star rating prediction model designed to tackle the bias and incorrectness of the consumer star system through sentiment analysis and rules. This system allows you to use the pros of both rule-based systems:
 
 - simple to build and interpret
@@ -288,11 +290,11 @@ In my case, I wanted to predict star ratings with as little bias as possible, in
 
 I also wanted to use differently-formatted information from multiple models (emoji prediction and plain sentiment prediction) to create a complete sentimental view of text, which can't be solved with transfer-learning, ensemble modelling, or even anything related to machine learning.
 
-If your next classification project involves either of these things, you might want to consider trying out this layout for your project. 😁
+If your next classification project involves either of these things by any chance, you might want to consider trying out this layout for your project - it does work alright 😁
 
 ## Check out
 
 - [https://kislayverma.com/programming/combining-rule-systems-and-machine-learning/](https://kislayverma.com/programming/combining-rule-systems-and-machine-learning/)
 - [https://nlathia.github.io/2020/10/ML-and-rule-engines.html](https://nlathia.github.io/2020/10/ML-and-rule-engines.html)
 - [https://www.capitalone.com/tech/machine-learning/rules-vs-machine-learning](https://www.capitalone.com/tech/machine-learning/rules-vs-machine-learning) - Specifically the "Patterns for Using Machine Learning and Rules Engines Together" section
-- [https://github.com/conaticus/ebay-account-summarizer](https://github.com/conaticus/ebay-account-summarizer0) - applies similar flagging and scoring system to the one used here, though there's no ML involved (see [server/src/sellerRater.ts](https://github.com/conaticus/ebay-account-summarizer/blob/master/server/src/sellerRater.ts))
+- [https://github.com/conaticus/ebay-account-summarizer](https://github.com/conaticus/ebay-account-summarizer) - applies similar flagging and scoring system to the one used here, though there's no ML involved (see [server/src/sellerRater.ts](https://github.com/conaticus/ebay-account-summarizer/blob/master/server/src/sellerRater.ts))

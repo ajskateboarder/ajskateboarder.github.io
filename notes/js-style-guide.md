@@ -1,5 +1,7 @@
 # JS style guide
 
+september something-something, 2024
+
 Just in case I ever touch JavaScript code ever again:
 
 - One-liner functions should use arrow functions and larger functions (either with more params or more code) should use plain functions

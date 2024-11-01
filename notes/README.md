@@ -1,6 +1,4 @@
-# [ajskateboarder.github.io](//ajskateboarder.github.io)
-
-## Notes
+# Notes
 
 Most of these involve breaking down a personal project and providing general insight. It can also just be for giggles.
 
@@ -14,4 +12,4 @@ Most of these involve breaking down a personal project and providing general ins
 
 ### [A network analysis of the Scratch community](scratch-net-analysis)
 
-### [JS style guide](js-style-guide)
+### [JS "style guide"](js-style-guide)

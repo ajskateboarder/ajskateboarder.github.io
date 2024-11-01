@@ -5,7 +5,7 @@
   <figcaption>Compiled XPy code, typically not seen</figcaption>
 </figure>
 
-<kbd>python</kbd> <kbd>jsx-templates</kbd>
+january 16, 2024
 
 <sub>This is one of my first ever blog posts, so this project is just kind of filler</sub>
 

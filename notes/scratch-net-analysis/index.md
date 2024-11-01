@@ -52,6 +52,8 @@ def get_following(user):
     return following
 ```
 
+(this is definitely redundant but whatever)
+
 I first tested it out on my own followers. This is done in the script by fetching the first 80 of my followers:
 
 ```py
@@ -81,16 +83,13 @@ for _, username in edges:
     time.sleep(0.4)
 ```
 
-I could repeat this for much longer if I wanted to (without it turning into API abuse obviously 🤣), but for demo purposes, I stop after a single time of doing this... nevertheless, it's still a very huge network. Root followers have their own followers, which can essentially be considered communities. Users that have common followers will connect with common communities.
+I could repeat this for much longer if I wanted to (without it turning into API abuse obviously), but for demo purposes, I stop after a single time of doing this... nevertheless, it's still a very huge network. Root followers have their own followers, which can essentially be considered communities. Users that have common followers will connect with common communities.
 
 <figure>
   <img src="./aj-entire-network.png" alt="Full network of aj🛹er" />
-  <figcaption>Full network of aj🛹er</figcaption>
 </figure>
 
-Since I am unfortunately a yapping forumer, I have quite a few forumers and people that noticed me in the forums following me... at least it's better than noone following me.
-
-One example is @7salad3salad, a user with probably thousands of posts who also has many followers which happen to be well-known forumers (consider this a shoutout salad). Nearly everyone in Salad's community are either forumers or people that have received help from Salad. 
+Since I've been involved with the Scratch forums before, I have quite a few forumers and people that noticed me in the forums following me
 
 <figure>
   <img src="./some-aj-forumer-nodes.png" alt="Some forumer nodes from aj🛹er network" />
@@ -102,7 +101,7 @@ Here, you can notice how root followers have their own personalities as spotted 
   <img src="./some-aj-nodes.png" alt="Some nodes from aj🛹er network" />
 </figure>
 
-There are a few known type of usernames on Scratch: the miscellaneous ones, ones involving any animal, and the "aesthetic" ones. From what I've seen on other social media, no other platform has these silly aesthetic usernames in such abundance. They usually consist of replacing vowels with "x", using extra vowels (usually i), and/or using extra dashes. Usually, it doesn't even take a *single step* to reach a follower that meets these qualifications.
+There are a few known type of usernames on Scratch: the miscellaneous ones, ones involving any animal, and the "aesthetic" ones. From what I've seen on other social media, no other platform has these "aesthetic" usernames in such abundance. They usually consist of replacing vowels with "x", using extra vowels (usually i), and/or using extra dashes. Usually, it doesn't even take a *single step* to reach a follower that meets these qualifications.
 
 \[todo..\]
 
@@ -122,4 +121,4 @@ I'll update the blog later with these things
 
 ## Check out
 
-- https://awesome-llama.github.io/articles/statistics - not quite related graph-wise, but it *is* Scratch statistics
+- https://awesome-llama.github.io/articles/statistics - the only other user stats I've seen done outside of official resources
